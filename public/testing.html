@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./output.css">
+  <script src="/module.js"></script>
+</head>
+<body class="bg-primary-light">
+  <div class="h-[70vh] w-10 rounded-l-2xl bg-red-700">
+    das
+    <p id="userId_reference"></p>
+  </div>
+  
+</body>
+<script>
+  //external functions
+  window.getSessionVariable = getSessionVariable;
+  window.samplefunction = samplefunction;
+
+  console.log(samplefunction());
+
+
+  document.getElementById('userId_reference').innerHTML = getSessionVariable('userId');
+
+
+</script>
+</html>
