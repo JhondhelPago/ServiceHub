@@ -1,5 +1,13 @@
 const {
-    get_userId
+    //user query exports
+    get_userId,
+
+
+
+
+    //admin query exports
+    get_adminId
+
 } = require ('./mysqlmodule');
 
 async function show(){
@@ -14,5 +22,20 @@ async function show(){
 }
 
 
-show();
+async function show_admin(){
+    
+    try{
+
+        let admin_data = await get_adminId('admin2@gmail.com', '1234', 'manager');
+
+        console.log(admin_data);
+    }catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
+
+//show();
+show_admin();
 

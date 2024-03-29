@@ -7,9 +7,26 @@ const pool = mysql.createPool({
     database: 'servicehub'
 }).promise();
 
+
+//user queries
 async function get_userId(email, password){
     try{
         const [row] = await pool.query(`SELECT id FROM user WHERE email = ? AND password = ? `, [email, password]);
+        return row;
+
+    }catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
+
+
+
+//admin queries
+async function get_adminId(email, password, role){
+    try{
+        const [row] = await pool.query(`SELECT id FROM admin WHERE email = ? AND password = ? AND role = ?`, [email, password, role]);
         return row;
 
     }catch(error){
@@ -26,5 +43,12 @@ async function get_userId(email, password){
 // show();
 
 module.exports = {
-    get_userId
+    //user function exports
+    get_userId,
+
+
+
+    //admin function exports
+    get_adminId
+    
 };

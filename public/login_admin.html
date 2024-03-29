@@ -6,6 +6,7 @@
   <title>Login</title>
 
   <link rel="stylesheet" href="./output.css">
+  <script src="/module.js"></script>
 </head>
 <body>
   <section class="container lg:min-h-[100vh] flex flex-col lg:flex-row items-center justify-between gap-2 mx-auto px-5 font-poppins text-darkColor">
@@ -36,7 +37,7 @@
       <div class="order-3 lg:order-none h-8 lg:h-[50vh] w-[50vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradientMain-light-from to-transparent"></div>
       <div class="order-2 lg:order-none h-8 lg:h-[65vh] w-[65vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradientMain-light-from to-transparent"></div>
       <!-- form -->
-      <form action="" class="flex flex-col justify-center w-[80vw] lg:w-[40vw] xl:w-[30vw] 2xl:max-w-[500px] lg:h-[80vh] min-h-[200px] px-5 py-10 gap-10 rounded-2xl lg:overflow-auto relative bg-gradient-to-br from-gradientMain-dark-from to-gradientMain-dark-to text-white">
+      <form id="adminLogForm" action="/adminLoginSession" method="post" class="flex flex-col justify-center w-[80vw] lg:w-[40vw] xl:w-[30vw] 2xl:max-w-[500px] lg:h-[80vh] min-h-[200px] px-5 py-10 gap-10 rounded-2xl lg:overflow-auto relative bg-gradient-to-br from-gradientMain-dark-from to-gradientMain-dark-to text-white">
         <div class="flex flex-col items-center gap-5">
           <img class="w-10 lg:w-16 object-contain" src="assets/adminIcon.png" alt="member icon">
           <div class="gap-1">
@@ -63,7 +64,7 @@
           <!-- pass -->
           <div class="flex flex-col">
             <label class="font-light" for="pass">Password</label>
-            <input class="px-3 py-2 rounded-md text-lg text-darkColor" type="password" name="pass" id="pass" placeholder="Password@123">
+            <input class="px-3 py-2 rounded-md text-lg text-darkColor" type="password" name="password" id="pass" placeholder="Password@123">
           </div>
 
         </div>
@@ -75,4 +76,85 @@
     </div>
   </section>
 </body>
+<script>
+  //external function
+  window.setSessionVariable = setSessionVariable;
+  window.getSessionVariable = getSessionVariable;
+  window.samplefunction = samplefunction;
+  window.sampleArith = sampleArith;
+
+  console.log(samplefunction());
+
+  console.log(sampleArith(5, 7, '+'));
+
+
+
+  async function adminLoginSession(){
+    document.getElementById('adminLogForm').addEventListener('submit', async  function(event){
+      event.preventDefault();
+
+      const formdata = new FormData(this);
+      const module = formdata.get('module');
+      const email = formdata.get('email');
+      const password = formdata.get('password')
+
+      //login logic
+
+      try{
+
+        const response = await fetch('/adminLoginSession', {
+          method: 'POST',
+          body:  JSON.stringify({module, email, password}),
+          headers: {'Content-Type' : 'application/json'}
+        });
+
+
+        const status_result = await response.json();
+
+        console.log(status_result.status);
+        console.log(status_result.id);
+
+
+        if(status_result.status){
+          
+          alert('admin login successfully.');
+          setSessionVariable("adminId",status_result.id);
+          window.location.href = '/homepage';
+
+        }else{
+          alert('admin login failed, incorrect username and password')
+        }
+
+      }catch(error){
+        
+        alert('error have been catch.');
+        console.log(error);
+        throw error;
+      }
+
+
+
+    });
+
+  }
+
+
+
+
+
+
+
+
+
+
+  //procedural functions
+
+  adminLoginSession();
+
+
+
+
+
+
+</script>
 </html>

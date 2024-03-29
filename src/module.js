@@ -1,4 +1,7 @@
-
+/*
+userId -> user id reference
+adminId -> admin id reference
+*/
 
 function setSessionVariable(key, value){
 

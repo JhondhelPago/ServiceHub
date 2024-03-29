@@ -12,18 +12,32 @@
   <div class="h-[70vh] w-10 rounded-l-2xl bg-red-700">
     das
     <p id="userId_reference"></p>
+
+    <div id="page_redirect">
+      <a href="/uploadform">post upload</a>
+      <a href="/jobposting">job upload</a>
+
+
+
+    </div>
   </div>
   
 </body>
 <script>
   //external functions
+  window.setSessionVariable = setSessionVariable;
   window.getSessionVariable = getSessionVariable;
   window.samplefunction = samplefunction;
+  window.sampleArith = sampleArith;
 
   console.log(samplefunction());
 
 
   document.getElementById('userId_reference').innerHTML = getSessionVariable('userId');
+
+
+  //logging adminId
+  console.log(getSessionVariable('adminId'));
 
 
 </script>

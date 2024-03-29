@@ -73,7 +73,7 @@
 <!-- js scripts -->
 
   <script>
-      // external functions
+    // external functions
     window.setSessionVariable = setSessionVariable;
     window.getSessionVariable = getSessionVariable;
     window.samplefunction = samplefunction;
@@ -118,9 +118,9 @@
             setSessionVariable('userId', status_result.id);
             alert('login successful');
             console.log('login successful');
-            window.location.href = '/homepage';
-
-
+            //window.location.href = '/homepage'; //page to route 
+            //window.location.href = '/uploadform';
+            window.location.href = '/jobposting';
 
           }else{
 
@@ -128,9 +128,6 @@
             console.log('login failed');
 
           }
-
-
-
 
         }catch(error){
           
