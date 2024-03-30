@@ -12,7 +12,8 @@ const {
 
 
     //admin function imports
-    get_adminId
+    get_adminId,
+    post_Event
 
 } = require('./mysqlmodule.js');
 
@@ -66,20 +67,42 @@ const JobUpload = multer({storage: Jobstorage});
 
 
 
-app.post('/EventsPost', EventUpload.array('images', 10), (req, res) => {
+app.post('/EventsPost', EventUpload.array('images', 10), async (req, res) => {
 
     const formData = req.body;
+    const creator_id = formData.creator_id;
     const message = formData.message;
     const filenames = req.files.map(file => file.filename); // const filenames is an array of file names in the formdata
     
+
+    console.log(filenames.length);
+    console.log(creator_id);
     console.log(message);
+    console.log(message == '');
     console.log(filenames);
 
+    //do not make query execution if there is no data to insert
+
+    if(message === '' && filenames === 0){
+        return;
+    } 
 
     //this are is the query logic for the mysql data insertion
 
-   
-    res.sendFile(path.join(__dirname, '..', 'public', 'testing.html'));
+    try{
+        await post_Event(creator_id, message, filenames);
+
+        console.log('query executed')
+        //res.send({OperationStatus: true});
+        res.sendFile(path.join(__dirname, '..', 'public', 'testing.html'));     
+    
+    }catch(error){
+        throw error;
+        console.log('query failed to execute');
+        //res.send({OperationStatus: false});
+    }
+
+
 });
 
 
@@ -195,7 +218,7 @@ app.post('/adminLoginSession', async (req, res) => {
             throw new Error('Invalid Module Entered  from admin login form');
     }
 
-    console.log(email, password, role);
+    //console.log(email, password, role);
 
     try{
         //send the id of the admin

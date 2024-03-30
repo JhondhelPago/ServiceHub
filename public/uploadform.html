@@ -4,15 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Upload</title>
+    <script src="/module.js"></script>
 </head>
 <body>
 
     <form method="post" action="/EventsPost" enctype="multipart/form-data">
         <label for="message">Description:</label>
-        <textarea name="message" id="message" rows="4" cols="50"></textarea>\
-        <input type="file" name="images" multiple>
+        <textarea name="message" id="message" rows="4" cols="50"></textarea>
+        <input id="imagefiles" type="file" name="images" multiple>
+        <input id='creator_id' type="hidden" name="creator_id">
         <button type="submit">Post</button>
     </form>
+
+    <p id="admin_id"></p>
     
 </body>
+<script>
+    //external functions
+    window.getSessionVariable = getSessionVariable;
+
+    
+
+    function EventsPost_submit(){
+        document.getElementById('creator_id').value = getSessionVariable('adminId');
+
+
+    }
+
+
+    
+
+
+
+
+    //codeblocks procedure
+
+    //document.getElementById('admin_id').innerHTML = getSessionVariable('adminId');
+
+    EventsPost_submit();
+
+
+
+</script>
 </html>

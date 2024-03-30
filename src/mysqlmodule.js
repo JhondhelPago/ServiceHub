@@ -36,6 +36,23 @@ async function get_adminId(email, password, role){
 }
 
 
+async function post_Event(Creator_id, description, filesArray){
+
+    filesArray = JSON.stringify(filesArray);
+
+    try{
+
+        await pool.execute(`INSERT INTO event_post (creator, description, imagefiles) VALUES (?, ?, ?)`, [Creator_id, description, filesArray]); 
+    
+    }catch(error){
+        throw error;
+        console.log('Error in \'post_Evetns\' function in mysqlmodule.js');
+    }
+
+
+}
+
+
 // async function show(){
 //     console.log(await get_userId('sample1000@gmail.com', '1234'));
 // }
@@ -49,6 +66,6 @@ module.exports = {
 
 
     //admin function exports
-    get_adminId
-    
+    get_adminId,
+    post_Event
 };
