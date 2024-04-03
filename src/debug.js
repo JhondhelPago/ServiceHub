@@ -6,7 +6,9 @@ const {
 
 
     //admin query exports
-    get_adminId
+    MyDateTime,
+    get_adminId,
+
 
 } = require ('./mysqlmodule');
 
@@ -37,5 +39,10 @@ async function show_admin(){
 
 
 //show();
-show_admin();
+//show_admin();
+
+console.log(MyDateTime.Timenow());
+console.log(MyDateTime.Datenow());
+
+//console.log(new Date());
 

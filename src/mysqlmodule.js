@@ -52,6 +52,59 @@ async function post_Event(Creator_id, description, filesArray){
 
 }
 
+const MyDate = {
+
+    now: () => {
+        const TheDate = Date();
+        const option = {
+            hour12: false,
+            timeZone: 'Asia/Manila'
+        }
+
+        return TheDate.toLocaleString('en-US', option);
+    }
+}
+
+
+const MyDateTime = {
+    Timenow: () => {
+        const TheDateTime = new Date();
+        const option = {
+            timeZone: 'Asia/Manila',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }
+
+
+        let timeString =  TheDateTime.toLocaleTimeString('en-US', option);
+        // let substring =  'GMT+0800 (Singapore Standard Time)';
+        // let semiTimeformat = (timeString.replace(substring, ''));
+
+
+        // let time_start_index = ( semiTimeformat.length - 8) - 1;
+
+        // let timeNow = '';
+
+        // for(let start = time_start_index; start < semiTimeformat.length ; start++ ){
+        //     timeNow += semiTimeformat[start];
+        // }
+
+        return timeString;
+    },
+
+    Datenow: () => {
+        const TheDateTime = new Date();
+        
+        let year = TheDateTime.getFullYear();
+        let month = TheDateTime.getMonth() + 1;
+        let day = TheDateTime.getDate();
+
+        return `${year}-${month}-${day}`;
+    }
+}
+
 
 // async function show(){
 //     console.log(await get_userId('sample1000@gmail.com', '1234'));
@@ -66,6 +119,9 @@ module.exports = {
 
 
     //admin function exports
+
+    MyDate, //object
+    MyDateTime,
     get_adminId,
     post_Event
 };

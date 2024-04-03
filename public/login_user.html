@@ -115,12 +115,12 @@
 
           if(status_result.status == true){
 
-            setSessionVariable('userId', status_result.id);
+            setSessionVariable('adminId', status_result.id);
             alert('login successful');
             console.log('login successful');
             //window.location.href = '/homepage'; //page to route 
             //window.location.href = '/uploadform';
-            window.location.href = '/jobposting';
+            window.location.href = '/homepage';
 
           }else{
 
