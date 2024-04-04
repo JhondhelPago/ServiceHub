@@ -36,13 +36,19 @@ async function get_adminId(email, password, role){
 }
 
 
-async function post_Event(Creator_id, description, filesArray){
+async function post_Event(Creator_id, EventTitle, description, filesArray){
 
     filesArray = JSON.stringify(filesArray);
 
     try{
 
-        await pool.execute(`INSERT INTO event_post (creator, description, imagefiles) VALUES (?, ?, ?)`, [Creator_id, description, filesArray]); 
+        await pool.execute(`
+        INSERT INTO event_post
+        (creator,
+        event_title,
+        description,
+        imagefiles)
+        VALUES (?, ?, ?, ?)`, [Creator_id, EventTitle, description, filesArray]); 
     
     }catch(error){
         throw error;
@@ -52,17 +58,27 @@ async function post_Event(Creator_id, description, filesArray){
 
 }
 
-const MyDate = {
+async function post_edit(postID, Event, Date, Time, Description, TargetAudience){
 
-    now: () => {
-        const TheDate = Date();
-        const option = {
-            hour12: false,
-            timeZone: 'Asia/Manila'
-        }
+    //query for editing the post in the MySQL Server
 
-        return TheDate.toLocaleString('en-US', option);
+    try{
+
+        await pool.execute(`
+        UPDATE event_post 
+        SET(
+        date_created = ?,
+        time_created = ?,
+        event_title = ?,
+        description = ?,
+        target_group = ? 
+        WHERE id = ?)`, [Date, Time, Event, Description, TargetAudience, postID]);
+
+    }catch(error){
+        throw error;
+        console.log('Error in the post_edit function @ mysqlmodule.js');
     }
+
 }
 
 
@@ -79,17 +95,6 @@ const MyDateTime = {
 
 
         let timeString =  TheDateTime.toLocaleTimeString('en-US', option);
-        // let substring =  'GMT+0800 (Singapore Standard Time)';
-        // let semiTimeformat = (timeString.replace(substring, ''));
-
-
-        // let time_start_index = ( semiTimeformat.length - 8) - 1;
-
-        // let timeNow = '';
-
-        // for(let start = time_start_index; start < semiTimeformat.length ; start++ ){
-        //     timeNow += semiTimeformat[start];
-        // }
 
         return timeString;
     },
@@ -120,7 +125,6 @@ module.exports = {
 
     //admin function exports
 
-    MyDate, //object
     MyDateTime,
     get_adminId,
     post_Event
