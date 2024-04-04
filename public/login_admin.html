@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
+  <link rel="icon" href="./assets/icon logo.png">
 
   <link rel="stylesheet" href="./output.css">
   <script src="/module.js"></script>
@@ -33,11 +34,11 @@
     </div>
 
     <div class="flex flex-col lg:flex-row items-center text-center 2xl lg:mb-0 gap-1">
-      <div class="order-4 lg:order-none h-8 lg:h-[35vh] w-[35vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradientMain-light-from to-transparent"></div>
-      <div class="order-3 lg:order-none h-8 lg:h-[50vh] w-[50vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradientMain-light-from to-transparent"></div>
-      <div class="order-2 lg:order-none h-8 lg:h-[65vh] w-[65vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradientMain-light-from to-transparent"></div>
+      <div class="order-4 lg:order-none h-8 lg:h-[35vh] w-[35vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradient-primary-light-from to-transparent"></div>
+      <div class="order-3 lg:order-none h-8 lg:h-[50vh] w-[50vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradient-primary-light-from to-transparent"></div>
+      <div class="order-2 lg:order-none h-8 lg:h-[65vh] w-[65vw] lg:w-10 rounded-b-2xl lg:rounded-tr-none lg:rounded-l-2xl opacity-70 bg-gradient-to-r lg:bg-gradient-to-b from-gradient-primary-light-from to-transparent"></div>
       <!-- form -->
-      <form id="adminLogForm" action="/adminLoginSession" method="post" class="flex flex-col justify-center w-[80vw] lg:w-[40vw] xl:w-[30vw] 2xl:max-w-[500px] lg:h-[80vh] min-h-[200px] px-5 py-10 gap-10 rounded-2xl lg:overflow-auto relative bg-gradient-to-br from-gradientMain-dark-from to-gradientMain-dark-to text-white">
+      <form id="adminLogForm" action="/adminLoginSession" method="post" class="flex flex-col justify-center w-[80vw] lg:w-[40vw] xl:w-[30vw] 2xl:max-w-[500px] lg:h-[80vh] min-h-[200px] px-5 py-10 gap-10 rounded-2xl lg:overflow-auto relative bg-gradient-to-br from-gradient-dark-from to-gradient-dark-to text-white">
         <div class="flex flex-col items-center gap-5">
           <img class="w-10 lg:w-16 object-contain" src="assets/adminIcon.png" alt="member icon">
           <div class="gap-1">
@@ -70,7 +71,7 @@
         </div>
         <div class="flex flex-col gap-2 mx-3">
           <!-- <p class="font-extralight">Not a member? <a class="text-primary-extraDark font-medium" href="#">Sign-up</a></p> -->
-          <button class="py-3 rounded-md font-noto text-xl bg-primary-extraDark shadow-sm hover:shadow-lg hover:scale-105 transition-all">Login</button>
+          <button class="py-3 rounded-md font-noto text-xl bg-primary-light shadow-sm hover:shadow-lg hover:scale-105 transition-all">Login</button>
         </div>
       </form>
     </div>

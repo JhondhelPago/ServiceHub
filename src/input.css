@@ -7,7 +7,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-  @apply w-2;
+  @apply w-2 h-2;
 }
 
 /* Track */
@@ -23,4 +23,12 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-primary-dark;
+}
+
+.navHover:hover{
+  @apply bg-darkerColor;
+}
+
+.activeLink{
+  @apply font-bold bg-darkerColor cursor-default;
 }
