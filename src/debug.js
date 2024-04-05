@@ -28,7 +28,7 @@ async function show_admin(){
     
     try{
 
-        let admin_data = await get_adminId('admin2@gmail.com', '1234', 'manager');
+        let admin_data = await get_adminId('admin1@gmail.com', '1234', 'regular');
 
         console.log(admin_data);
     }catch(error){
@@ -38,11 +38,14 @@ async function show_admin(){
 }
 
 
+
+
 //show();
 //show_admin();
 
-console.log(MyDateTime.Timenow());
-console.log(MyDateTime.Datenow());
+// console.log(MyDateTime.Timenow());
+// console.log(MyDateTime.Datenow());
 
 //console.log(new Date());
 
+show_admin();

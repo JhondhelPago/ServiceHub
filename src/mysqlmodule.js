@@ -25,8 +25,27 @@ async function get_userId(email, password){
 
 //admin queries
 async function get_adminId(email, password, role){
+    //role parameter -> possible value [Admin, Manager]
+
+    //switch statement where
+    let adminRole;
+
+    switch(role){
+        case 'Admin':
+            adminRole = 'regular';
+            break;
+        
+        case 'Manager':
+            adminRole = 'manager';
+            break;
+
+        default:
+            throw new Error('Invalid Module Entered  from admin login form');
+    }
+
+
     try{
-        const [row] = await pool.query(`SELECT id FROM admin WHERE email = ? AND password = ? AND role = ?`, [email, password, role]);
+        const [row] = await pool.query(`SELECT id FROM admin WHERE email = ? AND password = ? AND role = ?`, [email, password, adminRole]);
         return row;
 
     }catch(error){

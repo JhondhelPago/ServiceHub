@@ -76,6 +76,7 @@
       </form>
     </div>
   </section>
+  <p>this is p tag to shoe admin_id</p>
 </body>
 <script>
   //external function
@@ -100,6 +101,7 @@
       const password = formdata.get('password')
 
       //login logic
+    
 
       try{
 
@@ -120,7 +122,7 @@
           
           alert('admin login successfully.');
           setSessionVariable("adminId",status_result.id);
-          window.location.href = '/homepage';
+          window.location.href = '/home_admin';
 
         }else{
           alert('admin login failed, incorrect username and password')

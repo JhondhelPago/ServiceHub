@@ -90,6 +90,8 @@
             
         </div>
     </div>
+
+    <p id="ptag_adminId"></p>
 </body>
 <!-- nav script -->
 <script>
@@ -133,6 +135,22 @@
     window.getSessionVariable = getSessionVariable;
     window.samplefunction = samplefunction;
     window.sampleArith = sampleArith;
+
+    function display_adminId(elementId){
+        document.getElementById(elementId).innerHTML = getSessionVariable('adminId');
+    }
+
+    function main_procedure(){
+
+        display_adminId('ptag_adminId');
+
+    }
+
+
+
+    main_procedure();
+
+
 
 
 

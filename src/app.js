@@ -141,7 +141,7 @@ app.get('/module.js', (req, res) => {
 // get request of the html files
 app.get('/', (req, res) => {
     //send the login_user.html from the public folder, but the html file is on the upper directory
-    res.sendFile(path.join(__dirname, '..', 'public' , 'login_user.html'));
+    res.sendFile(path.join(__dirname, '..', 'public' , 'login_admin.html'));
 });
 
 app.get('/adminlog', (req, res) => {
@@ -154,6 +154,11 @@ app.get('/homepage', (req, res) => {
 
     res.sendFile(path.join(__dirname, '..', 'public', 'testing.html'));
 
+});
+
+app.get('/home_admin', (req, res) => {
+
+    res.sendFile(path.join(__dirname, '..', 'public', 'home_admin.html'));
 });
 
 app.get('/uploadform' , (req, res) => {
@@ -202,22 +207,11 @@ app.post('/adminLoginSession', async (req, res) => {
     
     const email = req.body.email;
     const password = req.body.password;
-    let role;
+    const role = req.body.module
 
 
-    switch(req.body.module){
-        case 'Admin':
-            role = 'regular';
-            break;
-        
-        case 'Manager':
-            role = 'manager';
-            break;
 
-        default:
-            throw new Error('Invalid Module Entered  from admin login form');
-    }
-
+    
     //console.log(email, password, role);
 
     try{
