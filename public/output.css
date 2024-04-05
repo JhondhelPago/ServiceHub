@@ -1226,6 +1226,10 @@ video {
   display: none;
 }
 
+.group\/label:hover .group-hover\/label\:justify-between{
+  justify-content: space-between;
+}
+
 .group\/label:hover .group-hover\/label\:bg-red-500{
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
