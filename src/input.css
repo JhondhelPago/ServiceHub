@@ -29,6 +29,10 @@
   @apply bg-darkerColor;
 }
 
+.scaleHover:hover{
+  @apply scale-105 shadow;
+}
+
 .activeLink{
   @apply font-bold bg-darkerColor cursor-default;
 }
