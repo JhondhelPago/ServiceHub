@@ -161,6 +161,11 @@ app.get('/home_admin', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'home_admin.html'));
 });
 
+app.get('/adminCreatePost', (req, res) => {
+
+    res.sendFile(path.join(__dirname, '..', 'public', 'create_post_admin.html'));
+});
+
 app.get('/uploadform' , (req, res) => {
 
     res.sendFile(path.join(__dirname, '..', 'public', 'uploadform.html'));
