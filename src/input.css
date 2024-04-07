@@ -12,7 +12,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply my-5;
+  @apply my-2;
 }
 
 /* Handle */
@@ -25,6 +25,14 @@
   @apply bg-primary-dark;
 }
 
+.navHover{
+  @apply px-5 py-2 rounded flex items-center justify-center;
+}
+
+.navHover label{
+  @apply cursor-pointer;
+}
+
 .navHover:hover{
   @apply bg-darkerColor;
 }
@@ -34,5 +42,9 @@
 }
 
 .activeLink{
-  @apply font-bold bg-darkerColor cursor-default;
+  @apply px-5 py-2 rounded flex items-center justify-center font-bold bg-darkerColor cursor-default;
+}
+
+.enlargedImg{
+  @apply object-contain absolute inset-0 h-screen w-screen bg-black bg-opacity-50 backdrop-blur-sm;
 }
