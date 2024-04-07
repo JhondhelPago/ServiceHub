@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrative Home</title>
+    <title>Administrative Create Post</title>
     <link rel="icon" href="./assets/icon logo.png">
 
     <link rel="stylesheet" href="./output.css">
+
+    <!-- link for select tag _>action selecting multiple lines -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">
+        <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
+
     <script src="/module.js"></script>
     <!-- <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script> -->
 </head>
@@ -40,7 +45,7 @@
                     <!-- <span class="px-5 rounded font-normal absolute start-24 -z-[1] invisible group-hover/tooltip:visible bg-darkColor">Event Posting</span> -->
                 </a>
 
-                <a class="px-5 py-2 rounded flex items-center justify-center group-hover/label:justify-between navHover group/tooltip" id="links" href="jobposting.html">
+                <a class="px-5 py-2 rounded flex items-center justify-center group-hover/label:justify-between navHover group/tooltip" id="links" href="#">
                     <label class="hidden group-hover/label:flex">Job Posting</label>
                     <svg class="w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M4.615 20q-.69 0-1.152-.462Q3 19.075 3 18.385v-9.77q0-.69.463-1.152Q3.925 7 4.615 7H9V5.615q0-.69.463-1.152Q9.925 4 10.615 4h2.77q.69 0 1.153.463q.462.462.462 1.152V7h4.385q.69 0 1.152.463q.463.462.463 1.152v9.77q0 .69-.462 1.152q-.463.463-1.153.463zm0-1h14.77q.23 0 .423-.192q.192-.193.192-.423v-9.77q0-.23-.192-.423Q19.615 8 19.385 8H4.615q-.23 0-.423.192Q4 8.385 4 8.615v9.77q0 .23.192.423q.193.192.423.192M10 7h4V5.615q0-.23-.192-.423Q13.615 5 13.385 5h-2.77q-.23 0-.423.192q-.192.193-.192.423zM4 19V8z"/></svg>
                     <!-- <span class="px-5 rounded font-normal absolute start-24 -z-[1] invisible group-hover/tooltip:visible bg-darkColor">Job Posting</span> -->
@@ -88,11 +93,79 @@
         </nav>
         <!-- main content container -->
         <div class="flex flex-grow justify-center text-darkColor">
+
+ 
+
+
+            <div class="">
+                <p class="text-2xl  ">Create Event Post</p>
+
+                <div class="m-3">
+                    <form>
+                        
+                        <div class="flex ">
+                            <div class="w-4/5 my-4">
+                                <div class="flex flex-col" >
+                                    
+                                    <!-- post type selection -->
+                                    <select class="w-full border border-darkColor text-2xl  pl-2 rounded-lg mb-5">
+                                        <option >Event Posting</option>
+                                        <option >Job Posting</option>
+                                    </select>
+                                    <!-- Title Input -->
+                                    <input class="w-[500px] border border-darkColor text-1xl py-2 pl-3 rounded-lg mb-5" type="text" placeholder="Title">
+                                </div>
+                                <!-- Date and Time Input -->
+                                <div class="flex space-x-3">
+                                    <div class="w-1/2">
+                                        <input class="w-full border border-darkColor text-1xl  py-2  px-2 rounded-lg mb-5 mr-5" type="date">
+                                    </div>
+                                    <div class="w-1/2">
+                                        <input class="w-full border border-darkColor text-1xl  py-2 px-2 rounded-lg mb-5" type="time" placeholder="01/01/2024">
+                                    </div>
+                                </div>
+                                <input class="w-[500px] border border-darkColor rounded-lg py-2 px-2 " placeholder="Location">
+                            </div>
+                            <!-- this is area is for file uploading -->
+                            <div class="pl-5 pt-5">
+                                <!-- image here -->
+                                <div class="relative inline-block">
+                                    <!-- Image display sample here  -->
+
+                                    <!-- upload button -->
+                                    <button class="w-36 h-12 border border-darkColor bg-orange-400  hover:bg-slate-500 text-white font-bold  ml-2 rounded" >
+                                        Upload File
+                                        <input  class="absolute inset-0 opacity-0 w-full h-full cursor-pointer" type="file" placeholder="upload file">
+                                        <img>   
+                                    </button>
+                                </div>
+                            </div>
+                        </div>  
+                        
+                        <div class="">
+                            <!-- Textarea for event description -->
+                            <textarea class="border border-darkColor rounded-md w-full p-3" type="textarea" placeholder="Event Description" rows="10" cols="20"></textarea>
+    
+                            <!-- select tag for selecting audience or selection multiple audience -->
+                            <div class="w-full bg-white border- border-darkColor text-1xl  p-5 my-5 rounded-lg">
+                                <label class="">Target Audience Selection</label>
+                                <select class="" id="targetAudienceSelection" multiple>
+                                    <option>Select All</option>
+                                    <option>Disability 1</option>
+                                    <option>Disability 2</option>
+                                    <option>Disability 3</option>
+                                    <option>Disability 4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             
         </div>
     </div>
 
-    <p id="ptag_adminId" class="text-red-700 bg-blue-400 text-4xl" ></p>
+    <p id="ptag_adminId"></p>
 </body>
 <!-- nav script -->
 <script>
@@ -130,26 +203,32 @@
         document.getElementById('minimizedLogo').style.display = 'none';
     }
 </script>
+
+<!-- script for targetAudienceSelection -> selection tag of disabilities in the Events Posting Form  -->
 <script>
-    //external functions
-    window.setSessionVariable = setSessionVariable;
-    window.getSessionVariable = getSessionVariable;
-    window.samplefunction = samplefunction;
-    window.sampleArith = sampleArith;
+    new MultiSelectTag('targetAudienceSelection')  // id
+</script>
 
-    function display_adminId(elementId){
-        document.getElementById(elementId).innerHTML = getSessionVariable('adminId');
-    }
+<script>
+    // //external functions
+    // window.setSessionVariable = setSessionVariable;
+    // window.getSessionVariable = getSessionVariable;
+    // window.samplefunction = samplefunction;
+    // window.sampleArith = sampleArith;
 
-    function main_procedure(){
+    // function display_adminId(elementId){
+    //     document.getElementById(elementId).innerHTML = getSessionVariable('adminId');
+    // }
 
-        display_adminId('ptag_adminId');
+    // function main_procedure(){
 
-    }
+    //     display_adminId('ptag_adminId');
+
+    // }
 
 
 
-    main_procedure();
+    // main_procedure();
 
 
 
