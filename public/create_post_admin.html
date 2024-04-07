@@ -97,59 +97,61 @@
  
 
 
-            <div class="">
-                <p class="text-2xl  ">Create Event Post</p>
+            <div class="w-full mt-5 px-44 pt-10">
+                <p class="text-4xl  font-semibold">Create Post</p>
 
-                <div class="m-3">
-                    <form>
+                <div class="ml-5 my-2">
+                    <form method="post" enctype="multipart/form-data" action="/">
                         
                         <div class="flex ">
                             <div class="w-4/5 my-4">
                                 <div class="flex flex-col" >
                                     
                                     <!-- post type selection -->
-                                    <select class="w-full border border-darkColor text-2xl  pl-2 rounded-lg mb-5">
-                                        <option >Event Posting</option>
-                                        <option >Job Posting</option>
+                                    <select class="w-full text-gray-400 border border-darkColor text-1xl  py-2 pl-2 rounded-lg mb-6" required>
+                                        <option disabled selected>-Post Type-</option>
+                                        <option class="text-gray-800" value="event">Event Posting</option>
+                                        <option class="text-gray-800" value="job">Job Posting</option>
                                     </select>
                                     <!-- Title Input -->
-                                    <input class="w-[500px] border border-darkColor text-1xl py-2 pl-3 rounded-lg mb-5" type="text" placeholder="Title">
+                                    <input class="w-full border border-darkColor text-1xl py-2 pl-3 rounded-lg mb-6" type="text" placeholder="Title" required>
                                 </div>
                                 <!-- Date and Time Input -->
-                                <div class="flex space-x-3">
+                                <div class="flex space-x-20">
                                     <div class="w-1/2">
-                                        <input class="w-full border border-darkColor text-1xl  py-2  px-2 rounded-lg mb-5 mr-5" type="date">
+                                        <input class="w-full border border-darkColor text-1xl  py-2  px-2 rounded-lg mb-6 mr-5" type="date">
                                     </div>
                                     <div class="w-1/2">
-                                        <input class="w-full border border-darkColor text-1xl  py-2 px-2 rounded-lg mb-5" type="time" placeholder="01/01/2024">
+                                        <input class="w-full border border-darkColor text-1xl  py-2 px-2 rounded-lg mb-6" type="time" placeholder="01/01/2024" >
                                     </div>
                                 </div>
+                                <!-- location -->
                                 <input class="w-[500px] border border-darkColor rounded-lg py-2 px-2 " placeholder="Location">
                             </div>
                             <!-- this is area is for file uploading -->
-                            <div class="pl-5 pt-5">
+                            <div class="pl-5">
                                 <!-- image here -->
                                 <div class="relative inline-block">
                                     <!-- Image display sample here  -->
 
                                     <!-- upload button -->
-                                    <button class="w-36 h-12 border border-darkColor bg-orange-400  hover:bg-slate-500 text-white font-bold  ml-2 rounded" >
-                                        Upload File
+                                    <div class="border border-gray-400 m-3 rounded-2xl ">
+                                        <!-- image upload icon -->
+                                        <img class="w-[130px] h-[130px]  mx-12 my-12 " src="assets/upload.png" alt="upload image icon">
                                         <input  class="absolute inset-0 opacity-0 w-full h-full cursor-pointer" type="file" placeholder="upload file">
-                                        <img>   
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>  
                         
-                        <div class="">
+                        <div>
                             <!-- Textarea for event description -->
                             <textarea class="border border-darkColor rounded-md w-full p-3" type="textarea" placeholder="Event Description" rows="10" cols="20"></textarea>
     
                             <!-- select tag for selecting audience or selection multiple audience -->
-                            <div class="w-full bg-white border- border-darkColor text-1xl  p-5 my-5 rounded-lg">
-                                <label class="">Target Audience Selection</label>
-                                <select class="" id="targetAudienceSelection" multiple>
+                            <div class="w-full bg-white border- border-darkColor text-1xl  my-2 rounded-lg">
+                                <label class="font-medium text-slate-400">Target Audience Selection</label>
+                                <select class="" id="targetAudienceSelection" required multiple>
                                     <option>Select All</option>
                                     <option>Disability 1</option>
                                     <option>Disability 2</option>
@@ -158,6 +160,12 @@
                                 </select>
                             </div>
                         </div>
+
+                        
+                            <div class=" w-20 p-3 pl-5 border border-darkColor bg-orange-400 rounded-lg">
+                                <button class=" text-white font-bold justify-end" type="submit">Post</button>
+                            </div>
+                        
                     </form>
                 </div>
             </div>
