@@ -130,7 +130,7 @@
                                 <div class="h-52 w-full md:w-52 flex items-center justify-center border border-gray-200 bg-white rounded-lg ">
                                     <!-- image upload icon -->
                                     <img class="h-20" src="assets/upload.png" alt="upload image icon">
-                                    <input  class="absolute inset-0 opacity-0 cursor-pointer" type="file" placeholder="upload file">
+                                    <input id="imageInput" class="absolute inset-0 opacity-0 cursor-pointer" type="file" placeholder="upload file" multiple>
                                 </div>
                             </div>
                         </div>
@@ -153,9 +153,16 @@
                 </form>
             </div>
         </div>
+        <div id="imageContainerDiv">
+            this area for upload iamge display
+        </div>
+    
     </div>
 
+    
     <p id="ptag_adminId"></p>
+
+
 </body>
 
 <script src="style.js"></script>
@@ -175,6 +182,42 @@
             console.log(values)
         }
     }) // id
+</script>
+
+<script>
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+    let files = event.target.files; // array of files
+    const imageContainerDiv = document.getElementById('imageContainerDiv');
+
+    // Clear previous content before appending new images
+    imageContainerDiv.innerHTML = '';
+
+    // Loop through each image file
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const imageUrl = event.target.result;
+
+                // Creating and setting up the element to store the accessed image file
+                const imgElement = document.createElement("img");
+                imgElement.src = imageUrl;
+                imgElement.alt = 'Uploaded Image';
+                // You can add Tailwind CSS utility classes here if needed
+                //imgElement.classList.add();
+
+                // Append the image element to the imageContainerDiv
+                imageContainerDiv.appendChild(imgElement);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+});
+
 </script>
 
 <!-- <script>
