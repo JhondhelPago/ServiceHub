@@ -1,2 +1,2 @@
 
-// get request of the html files
+    console.log(time);

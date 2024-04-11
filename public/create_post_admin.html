@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
 
+    <!-- js module that contians utility function for development -->
     <script src="/module.js"></script>
     <!-- <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script> -->
 </head>
@@ -92,70 +93,81 @@
             </div>
         </nav>
         <!-- main content container -->
-        <div class="pb-5 flex flex-col flex-grow bg-gray-100 text-darkColor">
-            <div class="py-5 px-5 mb-3 gap-2 flex items-center justify-between bg-gray-100 ">
-                <h1 class="text-2xl md:text-4xl font-medium">Create Post</h1>
-            </div>
-            <div class="px-5 flex flex-col gap-5 md:items-center">
-                <form class="flex flex-col gap-3" method="post" enctype="multipart/form-data" action="/">
-                    <div class="flex flex-col md:flex-row gap-3">
-                        <div class="flex flex-col gap-3">
-                            <!-- post type selection -->
-                            <select class="w-full border border-gray-200 bg-white py-2 pl-2 rounded-lg" required>
-                                <option disabled selected>-Choose Post Type-</option>
-                                <option value="event">Event Posting</option>
-                                <option value="job">Job Posting</option>
-                            </select>
-                            <!-- Title Input -->
-                            <input class="w-full border border-gray-200 bg-white py-2 px-3 rounded-lg" type="text" placeholder="Title" required>
-                            <!-- Date and Time Input -->
-                            <div class="flex flex-col md:flex-row gap-3">
-                                <div class="w-full md:w-1/2">
-                                    <input class="w-full border border-gray-200 bg-white  py-2  px-3 rounded-lg mr-5" type="date">
-                                </div>
-                                <div class="w-full md:w-1/2">
-                                    <input class="w-full border border-gray-200 bg-white  py-2 px-3 rounded-lg" type="time" placeholder="01/01/2024" >
-                                </div>
-                            </div>
-                            <!-- location -->
-                            <input class="w-full border border-gray-200 bg-white rounded-lg py-2 px-3 " placeholder="Location">
-                        </div>
-                        <!-- this is area is for file uploading -->
-                        <div class="">
-                            <!-- image here -->
-                            <div class="relative flex">
-                                <!-- Image display sample here  -->
-                                
-                                <!-- upload button -->
-                                <div class="h-52 w-full md:w-52 flex items-center justify-center border border-gray-200 bg-white rounded-lg ">
-                                    <!-- image upload icon -->
-                                    <img class="h-20" src="assets/upload.png" alt="upload image icon">
-                                    <input id="imageInput" class="absolute inset-0 opacity-0 cursor-pointer" type="file" placeholder="upload file" multiple>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Textarea for event description -->
-                    <textarea class="border border-gray-200 rounded-md py-2 px-3" type="textarea" placeholder="Event Description" rows="10"></textarea>
+        <div class="pb-8 pt-8 flex flex-row flex-grow bg-gray-100 text-darkColor justify-center">
 
-                    <!-- select tag for selecting audience or selection multiple audience -->
-                    <div class="rounded-lg">
-                        <label class="">Target Audience Selection</label>
-                        <select id="targetAudienceSelection" required multiple>
-                            <option>Select All</option>
-                            <option>Disability 1</option>
-                            <option>Disability 2</option>
-                            <option>Disability 3</option>
-                            <option>Disability 4</option>
-                        </select>
-                    </div>
-                    <button class="w-2/4 mx-auto p-3 my-3 bg-primary-light rounded-lg text-white scaleHover" type="submit">Post</button>
-                </form>
+            <div class="flex flex-col">
+
+                <div class="py-5 px-5 mb-3 gap-2 flex items-center justify-between bg-gray-100 ">
+                    <h1 class="text-2xl md:text-4xl font-medium">Create Post</h1>
+                </div>
+                
+                
+                <div class="px-5 flex flex-col gap-5 md:items-center">
+                    <form class="flex flex-col gap-3" method="post" enctype="multipart/form-data" action="/Posting"> 
+                        <div class="flex flex-col md:flex-row gap-3">
+                            <div class="flex flex-col gap-3">
+                                <!-- post type selection -->
+                                <select class="w-full border border-gray-200 bg-white py-2 pl-2 rounded-lg" name="category" required>
+                                    <option disabled selected>-Choose Post Type-</option>
+                                    <option value="event">Event Posting</option>
+                                    <option value="job">Job Posting</option>
+                                </select>
+                                <!-- Title Input -->
+                                <input class="w-full border border-gray-200 bg-white py-2 px-3 rounded-lg" type="text" name="title" placeholder="Title" required>
+                                <!-- Date and Time Input -->
+                                <div class="flex flex-col md:flex-row gap-3">
+                                    <div class="w-full md:w-1/2">
+                                        <input class="w-full border border-gray-200 bg-white  py-2  px-3 rounded-lg mr-5" type="date" name="date">
+                                    </div>
+                                    <div class="w-full md:w-1/2">
+                                        <input class="w-full border border-gray-200 bg-white  py-2 px-3 rounded-lg" type="time" name="time" placeholder="01/01/2024" >
+                                    </div>
+                                </div>
+                                <!-- location -->
+                                <input class="w-full border border-gray-200 bg-white rounded-lg py-2 px-3 " name="location" placeholder="Location">
+                            </div>
+                            <!-- this is area is for file uploading -->
+                            <div class="">
+                                <!-- image here -->
+                                <div class="relative flex">
+                                    <!-- Image display sample here  -->
+                                    
+                                    <!-- upload button -->
+                                    <div class="h-52 w-full md:w-52 flex items-center justify-center border border-gray-200 bg-white rounded-lg ">
+                                        <!-- image upload icon -->
+                                        <img class="h-20" src="assets/upload.png" alt="upload image icon">
+                                        <input id="imageInput" class="absolute inset-0 opacity-0 cursor-pointer" type="file" name="uploadImages" placeholder="upload file" multiple>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Textarea for event description -->
+                        <textarea class="border border-gray-200 rounded-md py-2 px-3" type="textarea" name="description" placeholder="Event Description" rows="10"></textarea>
+
+                        <!-- select tag for selecting audience or selection multiple audience -->
+                        <div class="rounded-lg">
+                            <label class="">Target Audience Selection</label>
+                            <select id="targetAudienceSelection" name="targetAudience" required multiple>
+                                <option value="Disability 1" >Select All</option>
+                                <option value="Disability 2">Disability 1</option>
+                                <option value="Disability 3">Disability 2</option>
+                                <option value="Disability 4">Disability 3</option>
+                                <option value="Disability 5">Disability 4</option>
+                            </select>
+                        </div>
+                        <input id="creator_id" type="hidden" name="creator_id">
+                        <button class="w-2/4 mx-auto p-3 my-3 bg-primary-light rounded-lg text-white scaleHover" type="submit">Post</button>
+                    </form>                
+                </div>
+
             </div>
+
+            <div id="imageContainerDiv" class="h-full  w-auto  overflow-y-hidden">
+               
+            </div>
+            
         </div>
-        <div id="imageContainerDiv">
-            this area for upload iamge display
-        </div>
+        
     
     </div>
 
@@ -207,7 +219,7 @@
                 imgElement.src = imageUrl;
                 imgElement.alt = 'Uploaded Image';
                 // You can add Tailwind CSS utility classes here if needed
-                //imgElement.classList.add();
+                imgElement.classList.add('w-[600px]', 'h-[300px]');
 
                 // Append the image element to the imageContainerDiv
                 imageContainerDiv.appendChild(imgElement);
@@ -218,6 +230,19 @@
     }
 });
 
+</script>
+
+<script>
+    // external function
+    window.setSessionVariable = setSessionVariable;
+    window.getSessionVariable = getSessionVariable;
+
+
+    function setInput_creator_id(){
+        document.getElementById('creator_id').value = getSessionVariable('adminId');
+    }
+
+    setInput_creator_id();
 </script>
 
 <!-- <script>

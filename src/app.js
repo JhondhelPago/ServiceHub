@@ -67,6 +67,54 @@ const JobUpload = multer({storage: Jobstorage});
 
 
 
+// this form action is generic,  it will handle  tow kind of post 'event posting, job'
+app.post('/Posting', EventUpload.array('uploadImages', 10), async (req, res) => {
+    
+    console.log('posting action is running the blocks')
+
+    const formData = req.body;
+    const creator_id = formData.creator_id;
+    const postType = formData.category;
+    const title = formData.title;
+    const date = formData.date;
+    const time = formData.time;
+    const location = formData.location;
+    const description = formData.description;
+    const targetAudience = formData.targetAudience;
+    const filenames = req.files.map(file => 'event' + file.filename);
+
+    
+
+    // this is the variable that hold the files
+    // let filenames;
+
+
+    console.log(creator_id);
+    console.log(postType);
+    console.log(title);
+    console.log(date);
+    console.log(time);
+    console.log(location);
+    console.log(description);
+    console.log(targetAudience);
+    console.log(filenames);
+
+
+
+    // control flow for two scenario
+
+    // block for event posting
+
+
+
+    
+
+
+    res.sendFile(path.join(__dirname, '..', 'public', 'home_admin.html'));
+    
+
+});
+
 app.post('/EventsPost', EventUpload.array('images', 10), async (req, res) => {
 
     const formData = req.body;
