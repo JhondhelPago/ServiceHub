@@ -48,4 +48,7 @@ async function show_admin(){
 
 //console.log(new Date());
 
-show_admin();
+// show_admin();
+
+console.log(MyDateTime.Timenow()); 
+

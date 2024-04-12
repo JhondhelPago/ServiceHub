@@ -55,27 +55,65 @@ async function get_adminId(email, password, role){
 }
 
 
-async function post_Event(Creator_id, EventTitle, description, filesArray){
+async function EventPosting(){
+    
+}
 
+
+async function post_EventJob(Type, Creator_id, EventTitle, ScheduledDate, ScheduledTime, Location, Description, Disability, filesArray){
+
+    Disability = JSON.stringify(Disability);
     filesArray = JSON.stringify(filesArray);
+
+    const Table = (Type === 'event') ? 'event_post' : 'job_post';
+
+    // const DateNow = MyDateTime.Datenow();
 
     try{
 
         await pool.execute(`
-        INSERT INTO event_post
+        INSERT INTO ${Table}
         (creator,
+        date_created,
+        time_created,
+        scheduled_date,
+        scheduled_time,
+        location,
         event_title,
         description,
+        target_group,
         imagefiles)
-        VALUES (?, ?, ?, ?)`, [Creator_id, EventTitle, description, filesArray]); 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [Creator_id, MyDateTime.Datenow(), MyDateTime.Timenow(), ScheduledDate, ScheduledTime, Location, EventTitle, Description, Disability, filesArray]); 
     
     }catch(error){
+
+        console.log('Error in \'post_Event\' function in mysqlmodule.js');
         throw error;
-        console.log('Error in \'post_Evetns\' function in mysqlmodule.js');
+        
     }
 
 
 }
+
+
+// async function post_Job(Creator_id, EventTitle, ScheduledDate, ScheduledTime, Location, Description, Disability, filesArray){
+    
+//     Disability = JSON.stringify(Disability);
+//     filesArray = JSON.stringify(filesArray);
+
+//     try{
+
+//         await pool.execute(`
+        
+//         `)
+
+//     }catch(error){
+
+//         console.log('Error in \'post_Job\' function in mysqlmodule.js');
+//         throw error;
+       
+//     }
+// }
 
 async function post_edit(postID, Event, Date, Time, Description, TargetAudience){
 
@@ -146,5 +184,5 @@ module.exports = {
 
     MyDateTime,
     get_adminId,
-    post_Event
+    post_EventJob
 };

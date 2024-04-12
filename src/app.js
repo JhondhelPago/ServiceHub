@@ -13,7 +13,7 @@ const {
 
     //admin function imports
     get_adminId,
-    post_Event
+    post_EventJob
 
 } = require('./mysqlmodule.js');
 
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 //multer configuration -> EventFile Storage Directory
 const Eventstorage = multer.diskStorage({
     destination: function (req, file, cb){
-        cb(null, path.join(__dirname, '..', 'EventsFile'));
+        cb(null, path.join(__dirname, '..', 'FileUpload'));
     },
     filename: function (req, file, cb){
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -81,7 +81,7 @@ app.post('/Posting', EventUpload.array('uploadImages', 10), async (req, res) => 
     const location = formData.location;
     const description = formData.description;
     const targetAudience = formData.targetAudience;
-    const filenames = req.files.map(file => 'event' + file.filename);
+    const filenames = req.files.map(file => postType + '-' + file.filename);
 
     
 
@@ -100,18 +100,16 @@ app.post('/Posting', EventUpload.array('uploadImages', 10), async (req, res) => 
     console.log(filenames);
 
 
+    try{
 
-    // control flow for two scenario
+        await post_EventJob(postType, creator_id, title, date, time, location, description, targetAudience, filenames);
 
-    // block for event posting
+        res.sendFile(path.join(__dirname, '..', 'public', 'home_admin.html'));
+    }catch(error){
+        console.log('Error in \' /Posting Route \'' );
+        throw error;
+    }
 
-
-
-    
-
-
-    res.sendFile(path.join(__dirname, '..', 'public', 'home_admin.html'));
-    
 
 });
 
