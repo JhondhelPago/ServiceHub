@@ -139,6 +139,23 @@ async function post_edit(postID, Event, Date, Time, Description, TargetAudience)
 }
 
 
+
+
+async function fetchEvent(){
+
+    try{
+
+        const [row] = await pool.execute(`SELECT * FROM event_post`);
+
+        return row;
+
+    }catch(error){
+        console.log('Error in \'fetchEventPosting() function\' in mysqlmodule.js');
+        throw error;
+    }
+}
+
+
 const MyDateTime = {
     Timenow: () => {
         const TheDateTime = new Date();
@@ -182,7 +199,10 @@ module.exports = {
 
     //admin function exports
 
-    MyDateTime,
-    get_adminId,
-    post_EventJob
+    MyDateTime, // Object
+
+
+    get_adminId, //gettig the adminId
+    post_EventJob, //inserting the Event or Job data information to the database
+    fetchEvent
 };

@@ -8,7 +8,7 @@ const {
     //admin query exports
     MyDateTime,
     get_adminId,
-
+    fetchEvent
 
 } = require ('./mysqlmodule');
 
@@ -50,5 +50,22 @@ async function show_admin(){
 
 // show_admin();
 
-console.log(MyDateTime.Timenow()); 
+// console.log(MyDateTime.Timenow()); 
+
+
+async function fetchEventShow(){
+    
+    try{
+
+        let Events = await fetchEvent();
+
+        console.log(Events);
+
+    }catch(error){
+        throw error;
+    }
+}
+
+
+fetchEventShow();
 
