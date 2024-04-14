@@ -13,9 +13,18 @@ const {
 
     //admin function imports
     get_adminId,
-    post_EventJob
+    post_EventJob,
+    fetchJob
 
 } = require('./mysqlmodule.js');
+
+
+
+//utilities.js -> provide utility classes and functions
+
+const {
+    StringManipulate
+} = require('./utilities.js');
 
  
 // express app instanciation
@@ -55,7 +64,7 @@ const Jobstorage = multer.diskStorage({
     },
     filename: function (req, file, cb){
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        const ext = path.extname(file.originalname);
+        const ext = path.extname(file.originalname);x
         cb(null, file.fieldname + '-' + uniqueSuffix + ext);
     }
 });
@@ -80,8 +89,13 @@ app.post('/Posting', EventUpload.array('uploadImages', 10), async (req, res) => 
     const time = formData.time;
     const location = formData.location;
     const description = formData.description;
-    const targetAudience = formData.targetAudience;
-    const filenames = req.files.map(file => postType + '-' + file.filename);
+    let targetAudience = formData.targetAudience;
+    let filenames = req.files.map(file => file.filename);
+
+
+    //reformating the array values to strings
+    targetAudience = StringManipulate.RemoveSqrBrac(targetAudience.toString());
+    filenames = StringManipulate.RemoveSqrBrac(filenames.toString());
 
     
 
@@ -96,8 +110,8 @@ app.post('/Posting', EventUpload.array('uploadImages', 10), async (req, res) => 
     console.log(time);
     console.log(location);
     console.log(description);
-    console.log(targetAudience);
-    console.log(filenames);
+    console.log(StringManipulate.RemoveSqrBrac(targetAudience.toString()));
+    console.log(StringManipulate.RemoveSqrBrac(filenames.toString()));
 
 
     try{
@@ -112,6 +126,33 @@ app.post('/Posting', EventUpload.array('uploadImages', 10), async (req, res) => 
 
 
 });
+
+//fetcing jobposing from the server
+app.get('/fetchingJobPost', async (req, res) => {
+
+    try{
+
+        const data = await fetchJob();
+
+        
+        console.log(data);
+
+        res.send(data);
+
+    }catch(error){
+
+        throw error;
+
+    }
+
+
+    
+
+
+});
+
+
+
 
 app.post('/EventsPost', EventUpload.array('images', 10), async (req, res) => {
 

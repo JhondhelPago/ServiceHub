@@ -8,9 +8,14 @@ const {
     //admin query exports
     MyDateTime,
     get_adminId,
-    fetchEvent
+    fetchEvent,
+    fetchJob
 
 } = require ('./mysqlmodule');
+
+const {
+    StringManipulate
+} = require('./utilities.js');
 
 async function show(){
     try{
@@ -37,6 +42,32 @@ async function show_admin(){
     }
 }
 
+async function fetchEventShow(){
+    
+    try{
+
+        let Events = await fetchEvent();
+
+        console.log(Events);
+
+    }catch(error){
+        throw error;
+    }
+}
+
+
+async function fetchJobShow(){
+
+    try{
+        let Job = await fetchJob();
+
+        console.log(Job);
+    }catch(error){
+        throw error;
+    }
+}
+
+
 
 
 
@@ -52,20 +83,8 @@ async function show_admin(){
 
 // console.log(MyDateTime.Timenow()); 
 
+// fetchEventShow();
 
-async function fetchEventShow(){
-    
-    try{
+fetchJobShow();
 
-        let Events = await fetchEvent();
-
-        console.log(Events);
-
-    }catch(error){
-        throw error;
-    }
-}
-
-
-fetchEventShow();
 

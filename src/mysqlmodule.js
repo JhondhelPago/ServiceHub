@@ -1,4 +1,5 @@
 const mysql = require('mysql2');
+const { StringManipulate } = require('./utilities');
 
 const pool = mysql.createPool({
     host: 'localhost',
@@ -156,6 +157,33 @@ async function fetchEvent(){
 }
 
 
+async function fetchJob(){
+
+    try{
+
+        const [row] = await pool.execute('SELECT * FROM job_post');
+
+        //cleaning the uncertain format of column value
+
+        let newRow = row.map(function(record) {
+
+            record.imagefiles = StringManipulate.RemoveQuotation(record.imagefiles);
+            record.target_group = StringManipulate.RemoveQuotation(record.target_group);
+
+            return record;
+
+        });
+
+        return newRow;
+
+    }catch(error){
+        console.log('Error in \'fetchJob() function\' in mysqlmodule.js');
+        throw error;
+    }
+
+}
+
+
 const MyDateTime = {
     Timenow: () => {
         const TheDateTime = new Date();
@@ -185,6 +213,9 @@ const MyDateTime = {
 }
 
 
+
+
+
 // async function show(){
 //     console.log(await get_userId('sample1000@gmail.com', '1234'));
 // }
@@ -204,5 +235,6 @@ module.exports = {
 
     get_adminId, //gettig the adminId
     post_EventJob, //inserting the Event or Job data information to the database
-    fetchEvent
+    fetchEvent,
+    fetchJob
 };

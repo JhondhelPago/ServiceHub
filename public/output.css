@@ -671,18 +671,12 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mx-4{
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.my-4{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .mb-3{
   margin-bottom: 0.75rem;
+}
+
+.mb-4{
+  margin-bottom: 1rem;
 }
 
 .mb-5{
@@ -699,10 +693,6 @@ video {
 
 .mt-auto{
   margin-top: auto;
-}
-
-.mb-4{
-  margin-bottom: 1rem;
 }
 
 .inline{
