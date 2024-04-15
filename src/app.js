@@ -134,8 +134,7 @@ app.get('/fetchingJobPost', async (req, res) => {
 
         const data = await fetchJob();
 
-        
-        console.log(data);
+        //console.log(data);
 
         res.send(data);
 
@@ -144,10 +143,6 @@ app.get('/fetchingJobPost', async (req, res) => {
         throw error;
 
     }
-
-
-    
-
 
 });
 

@@ -161,7 +161,7 @@ async function fetchJob(){
 
     try{
 
-        const [row] = await pool.execute('SELECT * FROM job_post');
+        const [row] = await pool.execute('SELECT job_post.* , admin.firstName, admin.lastName  FROM job_post INNER JOIN admin ON job_post.creator = admin.id COLLATE utf8mb4_general_ci');
 
         //cleaning the uncertain format of column value
 
