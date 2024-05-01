@@ -7,12 +7,12 @@
 
 /* width */
 ::-webkit-scrollbar {
-  @apply w-2 h-2;
+  @apply w-2 h-2 md:w-3 md:h-3 bg-transparent;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply my-2;
+  @apply my-2 bg-transparent;
 }
 
 /* Handle */
@@ -48,3 +48,24 @@
 .enlargedImg{
   @apply object-contain absolute inset-0 h-screen w-screen bg-black bg-opacity-50 backdrop-blur-sm;
 }
+
+.activeMail{
+  @apply bg-extra-light rounded;
+}
+
+.hoverMail:hover{
+  @apply bg-extra-light rounded;
+}
+
+.hoverMailItem{
+  @apply cursor-pointer;
+}
+
+.hoverMailItem:hover{
+  @apply bg-extra-light;
+}
+
+.activeMailItem{
+  @apply bg-extra-extra-light;
+}
+
